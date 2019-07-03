@@ -76,7 +76,7 @@ let enemyselectO = function () {
         if (obiwan != selectedChar) {
             defendingChar = obiwan;
             obiwanImage.insertAfter($("#defender")).css("background", "black")
-            $("#ot").css("color", "white")
+            $("#kt").css("color", "white")
             $("#ohealth").css("color", "white");
             enemyChose = true;
         }
