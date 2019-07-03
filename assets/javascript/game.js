@@ -29,8 +29,8 @@ let baseAttack;
 let charSelectO = function () {
     if (characterChose === false) {
         console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies"))
-        $(this).insertAfter($("#currentchar"))
+        $(".characters").insertAfter($("#enemies")).css("background", "red")
+        $(this).insertAfter($("#currentchar")).css("background", "white")
         selectedChar = obiwan;
         characterChose = true;
         baseAttack = selectedChar.attack
@@ -39,8 +39,8 @@ let charSelectO = function () {
 let charSelectG = function () {
     if (characterChose === false) {
         console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies"))
-        $(this).insertAfter($("#currentchar"))
+        $(".characters").insertAfter($("#enemies")).css("background", "red")
+        $(this).insertAfter($("#currentchar")).css("background", "white")
         selectedChar = grievous;
         characterChose = true;
         baseAttack = selectedChar.attack
@@ -49,8 +49,8 @@ let charSelectG = function () {
 let charSelectE = function () {
     if (characterChose === false) {
         console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies"))
-        $(this).insertAfter($("#currentchar"))
+        $(".characters").insertAfter($("#enemies")).css("background", "red")
+        $(this).insertAfter($("#currentchar")).css("background", "white")
         selectedChar = emperor;
         characterChose = true;
         baseAttack = selectedChar.attack
@@ -59,8 +59,8 @@ let charSelectE = function () {
 let charSelectJ = function () {
     if (characterChose === false) {
         console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies"))
-        $(this).insertAfter($("#currentchar"))
+        $(".characters").insertAfter($("#enemies")).css("background", "red")
+        $(this).insertAfter($("#currentchar")).css("background", "white")
         selectedChar = jarjar;
         characterChose = true;
         baseAttack = selectedChar.attack
@@ -75,7 +75,9 @@ let enemyselectO = function () {
     if (characterChose === true && enemyChose === false) {
         if (obiwan != selectedChar) {
             defendingChar = obiwan;
-            obiwanImage.insertAfter($("#defender"))
+            obiwanImage.insertAfter($("#defender")).css("background", "black")
+            $("#ot").css("color", "white")
+            $("#ohealth").css("color", "white");
             enemyChose = true;
         }
     }
@@ -85,7 +87,9 @@ let enemyselectG = function () {
     if (characterChose === true && enemyChose === false) {
         if (grievous != selectedChar) {
             defendingChar = grievous;
-            grievousImage.insertAfter($("#defender"))
+            grievousImage.insertAfter($("#defender")).css("background", "black")
+            $("#gt").css("color", "white")
+            $("#ghealth").css("color", "white");
             enemyChose = true;
         }
     }
@@ -95,7 +99,9 @@ let enemyselectE = function () {
     if (characterChose === true && enemyChose === false) {
         if (emperor != selectedChar) {
             defendingChar = emperor;
-            emperorImage.insertAfter($("#defender"))
+            emperorImage.insertAfter($("#defender")).css("background", "black")
+            $("#et").css("color", "white")
+            $("#ehealth").css("color", "white");
             enemyChose = true;
         }
     }
@@ -105,7 +111,9 @@ let enemyselectJ = function () {
     if (characterChose === true && enemyChose === false) {
         if (jarjar != selectedChar) {
             defendingChar = jarjar;
-            jarjarImage.insertAfter($("#defender"))
+            jarjarImage.insertAfter($("#defender")).css("background", "black")
+            $("#jt").css("color", "white")
+            $("#jhealth").css("color", "white");
             enemyChose = true;
         }
     }
@@ -174,16 +182,54 @@ $("#attackbutton").on("click", function () {
 
     if (selectedChar.health <= 0) {
         alert("Game over!");
+        $("#restart").css("display", "block")
+        
     }
 
     if (defeatedOpponents.length === 3 && selectedChar.health > 0) {
         alert("Congratulations! You have brought peace and order to the galaxy");
+        $("#restart").css("display", "block")
     }
 })
 
+$("#restart").on("click", function (){
+obiwan = { attack: 7, counterattack: 8, health: 90 };
+grievous = { attack: 8, counterattack: 10, health: 115 };
+emperor = { attack: 9, counterattack: 12, health: 125 };
+jarjar = { attack: 10, counterattack: 14, health: 140 };
+
+displayObiwanHealth.text(obiwan.health);
+displayGrievousHealth.text(grievous.health);
+displayEmperorHealth.text(emperor.health);
+displayJarJarHealth.text(jarjar.health);
+
+characterChose = false;
+enemyChose = false;
+
+selectedChar = "#";
+defendingChar = "#";
+
+defeatedOpponents = []
+baseAttack = 0;
+
+$(".characters").insertAfter($("#pickrow")).css("display", "inline-block")
+
+$("#displaycounter").text("")
+$("#displayattack").text("")
+
+$("#restart").css("display", "none")
+
+$(".characters").css("background", "white")
+
+$(".nametext").css("color", "black");
+
+$("#ohealth").css("color", "black");
+$("#ghealth").css("color", "black");
+$("#ehealth").css("color", "black");
+$("#jhealth").css("color", "black");
+})
 
 
 // add css to picked enemies
-// add reset button
 
 // add css effects
