@@ -37,3 +37,14 @@ div {
     top: 0;
 
 }
+
+.displayhealth {
+    color: black;
+    position: absolute;
+    bottom: 0;
+    left: 100px;
+}
+
+#attackbutton {
+    color: blueviolet;
+}
