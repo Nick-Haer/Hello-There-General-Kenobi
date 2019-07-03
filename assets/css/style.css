@@ -48,3 +48,17 @@ div {
 #attackbutton {
     color: blueviolet;
 }
+
+#displayattack {
+    color: black;
+    background-color: white;
+}
+
+#displaycounter {
+    color: black;
+    background-color: white;
+}
+
+#restart {
+    display: none;
+}
