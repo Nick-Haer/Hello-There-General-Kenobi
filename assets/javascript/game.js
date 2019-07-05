@@ -171,7 +171,10 @@ $("#restart").on("click", function () {
     defeatedOpponents = []
     baseAttack = 0;
 
-    $(".characters").insertAfter($("#pickrow")).css("display", "inline-block")
+    $("#kenobi").insertAfter($("#pickrow")).css("display", "inline-block")
+    $("#grievous").insertAfter($("#pickrow")).css("display", "inline-block")
+    $("#emperor").insertAfter($("#pickrow")).css("display", "inline-block")
+    $("#jarjar").insertAfter($("#pickrow")).css("display", "inline-block")
 
     $("#displaycounter").text("")
     $("#displayattack").text("")
@@ -187,8 +190,3 @@ $("#restart").on("click", function () {
     $("#ehealth").css("color", "black");
     $("#jhealth").css("color", "black");
 })
-
-
-// add css to picked enemies
-
-// add css effects
