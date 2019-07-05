@@ -26,113 +26,72 @@ let defendingChar;
 let defeatedOpponents = []
 let baseAttack;
 
-let charSelectO = function () {
-    if (characterChose === false) {
-        console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies")).css("background", "red")
-        $(this).insertAfter($("#currentchar")).css("background", "white")
-        selectedChar = obiwan;
-        characterChose = true;
-        baseAttack = selectedChar.attack
-    }
-}
-let charSelectG = function () {
-    if (characterChose === false) {
-        console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies")).css("background", "red")
-        $(this).insertAfter($("#currentchar")).css("background", "white")
-        selectedChar = grievous;
-        characterChose = true;
-        baseAttack = selectedChar.attack
-    }
-}
-let charSelectE = function () {
-    if (characterChose === false) {
-        console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies")).css("background", "red")
-        $(this).insertAfter($("#currentchar")).css("background", "white")
-        selectedChar = emperor;
-        characterChose = true;
-        baseAttack = selectedChar.attack
-    }
-}
-let charSelectJ = function () {
-    if (characterChose === false) {
-        console.log("You chose someone");
-        $(".characters").insertAfter($("#enemies")).css("background", "red")
-        $(this).insertAfter($("#currentchar")).css("background", "white")
-        selectedChar = jarjar;
-        characterChose = true;
-        baseAttack = selectedChar.attack
-    }
-}
 
+let charSelect = function () {
 
-
-
-
-let enemyselectO = function () {
     if (characterChose === true && enemyChose === false) {
-        if (obiwan != selectedChar) {
+        if ((obiwan != selectedChar) && ($(this).attr("id") === "kenobi")) {
             defendingChar = obiwan;
             obiwanImage.insertAfter($("#defender")).css("background", "black")
             $("#kt").css("color", "white")
             $("#ohealth").css("color", "white");
-            enemyChose = true;
         }
-    }
-};
-
-let enemyselectG = function () {
-    if (characterChose === true && enemyChose === false) {
-        if (grievous != selectedChar) {
+        else if ((grievous != selectedChar) && ($(this).attr("id") === "grievous")) {
             defendingChar = grievous;
             grievousImage.insertAfter($("#defender")).css("background", "black")
             $("#gt").css("color", "white")
             $("#ghealth").css("color", "white");
-            enemyChose = true;
-        }
-    }
-};
-
-let enemyselectE = function () {
-    if (characterChose === true && enemyChose === false) {
-        if (emperor != selectedChar) {
+        } 
+        else if ((emperor != selectedChar) && ($(this).attr("id") === "emperor")) {
             defendingChar = emperor;
             emperorImage.insertAfter($("#defender")).css("background", "black")
             $("#et").css("color", "white")
-            $("#ehealth").css("color", "white");
-            enemyChose = true;
-        }
-    }
-};
-
-let enemyselectJ = function () {
-    if (characterChose === true && enemyChose === false) {
-        if (jarjar != selectedChar) {
+            $("#ehealth").css("color", "white")
+        } 
+        else if ((jarjar != selectedChar) && ($(this).attr("id") === "jarjar")) {
             defendingChar = jarjar;
             jarjarImage.insertAfter($("#defender")).css("background", "black")
             $("#jt").css("color", "white")
             $("#jhealth").css("color", "white");
-            enemyChose = true;
         }
+        enemyChose = true;
     }
-};
 
-obiwanImage.on("click", enemyselectO).on("click", charSelectO)
+    if (characterChose === false) {
+        console.log("You chose someone");
+        $(".characters").insertAfter($("#enemies")).css("background", "red")
+        $(this).insertAfter($("#currentchar")).css("background", "white")
+        if ($(this).attr("id") === "kenobi") {
+            selectedChar = obiwan;
+        }
+        else if ($(this).attr("id") === "grievous") {
+            selectedChar = grievous;
+        }
+        else if ($(this).attr("id") === "emperor") {
+            selectedChar = emperor;
+        }
+        else if ($(this).attr("id") === "jarjar") {
+            selectedChar = jarjar;
+        }
+        characterChose = true;
+        baseAttack = selectedChar.attack
+    }
+}
 
-grievousImage.on("click", enemyselectG).on("click", charSelectG)
+obiwanImage.on("click", charSelect);
 
-emperorImage.on("click", enemyselectE).on("click", charSelectE)
+grievousImage.on("click", charSelect);
 
-jarjarImage.on("click", enemyselectJ).on("click", charSelectJ)
+emperorImage.on("click", charSelect);
+
+jarjarImage.on("click", charSelect);
 
 
-function determineChar (x) {
-   return x.counterattack === 8 ? "Kenobi" 
-    : x.counterattack === 10 ? "Grievous"
-    : x.counterattack === 12 ? "The Emperor"
-    : "Darth JarJar";
+function determineChar(x) {
+    return x.counterattack === 8 ? "Kenobi"
+        : x.counterattack === 10 ? "Grievous"
+            : x.counterattack === 12 ? "The Emperor"
+                : "Darth JarJar";
 }
 
 
@@ -159,31 +118,31 @@ $("#attackbutton").on("click", function () {
         emperorImage.css("display", "none")
         enemyChose = false;
         if (!defeatedOpponents.includes("e"))
-        defeatedOpponents.push("e")
+            defeatedOpponents.push("e")
     }
     if (grievous.health <= 0) {
         grievousImage.css("display", "none")
         enemyChose = false;
         if (!defeatedOpponents.includes("g"))
-        defeatedOpponents.push("g")
+            defeatedOpponents.push("g")
     }
     if (jarjar.health <= 0) {
         jarjarImage.css("display", "none")
         enemyChose = false;
         if (!defeatedOpponents.includes("j"))
-        defeatedOpponents.push("j")
+            defeatedOpponents.push("j")
     }
     if (obiwan.health <= 0) {
         obiwanImage.css("display", "none")
         enemyChose = false;
         if (!defeatedOpponents.includes("o"))
-        defeatedOpponents.push("o")
+            defeatedOpponents.push("o")
     }
 
     if (selectedChar.health <= 0) {
         alert("Game over!");
         $("#restart").css("display", "block")
-        
+
     }
 
     if (defeatedOpponents.length === 3 && selectedChar.health > 0) {
@@ -192,41 +151,41 @@ $("#attackbutton").on("click", function () {
     }
 })
 
-$("#restart").on("click", function (){
-obiwan = { attack: 7, counterattack: 8, health: 90 };
-grievous = { attack: 8, counterattack: 10, health: 115 };
-emperor = { attack: 9, counterattack: 12, health: 125 };
-jarjar = { attack: 10, counterattack: 14, health: 140 };
+$("#restart").on("click", function () {
+    obiwan = { attack: 7, counterattack: 8, health: 90 };
+    grievous = { attack: 8, counterattack: 10, health: 115 };
+    emperor = { attack: 9, counterattack: 12, health: 125 };
+    jarjar = { attack: 10, counterattack: 14, health: 140 };
 
-displayObiwanHealth.text(obiwan.health);
-displayGrievousHealth.text(grievous.health);
-displayEmperorHealth.text(emperor.health);
-displayJarJarHealth.text(jarjar.health);
+    displayObiwanHealth.text(obiwan.health);
+    displayGrievousHealth.text(grievous.health);
+    displayEmperorHealth.text(emperor.health);
+    displayJarJarHealth.text(jarjar.health);
 
-characterChose = false;
-enemyChose = false;
+    characterChose = false;
+    enemyChose = false;
 
-selectedChar = "#";
-defendingChar = "#";
+    selectedChar = "#";
+    defendingChar = "#";
 
-defeatedOpponents = []
-baseAttack = 0;
+    defeatedOpponents = []
+    baseAttack = 0;
 
-$(".characters").insertAfter($("#pickrow")).css("display", "inline-block")
+    $(".characters").insertAfter($("#pickrow")).css("display", "inline-block")
 
-$("#displaycounter").text("")
-$("#displayattack").text("")
+    $("#displaycounter").text("")
+    $("#displayattack").text("")
 
-$("#restart").css("display", "none")
+    $("#restart").css("display", "none")
 
-$(".characters").css("background", "white")
+    $(".characters").css("background", "white")
 
-$(".nametext").css("color", "black");
+    $(".nametext").css("color", "black");
 
-$("#ohealth").css("color", "black");
-$("#ghealth").css("color", "black");
-$("#ehealth").css("color", "black");
-$("#jhealth").css("color", "black");
+    $("#ohealth").css("color", "black");
+    $("#ghealth").css("color", "black");
+    $("#ehealth").css("color", "black");
+    $("#jhealth").css("color", "black");
 })
 
 
