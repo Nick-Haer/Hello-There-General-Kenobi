@@ -171,10 +171,10 @@ $("#restart").on("click", function () {
     defeatedOpponents = []
     baseAttack = 0;
 
-    $("#kenobi").insertAfter($("#pickrow")).css("display", "inline-block")
-    $("#grievous").insertAfter($("#pickrow")).css("display", "inline-block")
-    $("#emperor").insertAfter($("#pickrow")).css("display", "inline-block")
     $("#jarjar").insertAfter($("#pickrow")).css("display", "inline-block")
+    $("#emperor").insertAfter($("#pickrow")).css("display", "inline-block")
+    $("#grievous").insertAfter($("#pickrow")).css("display", "inline-block")
+    $("#kenobi").insertAfter($("#pickrow")).css("display", "inline-block")
 
     $("#displaycounter").text("")
     $("#displayattack").text("")
